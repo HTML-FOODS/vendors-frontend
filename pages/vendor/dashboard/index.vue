@@ -2,16 +2,7 @@
   <div id="bg">
     <div>
       <v-row>
-        <v-col cols="3">
-          <v-card color="#C42D32" dark class="mx-auto" max-width="344">
-            <v-card-title class="text-h6"> Current Users</v-card-title>
-
-            <v-card-actions>
-              <v-btn text> 10,500</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-        <v-col cols="3">
+        <v-col cols="4">
           <v-card color="#C42D32" dark class="mx-auto" width="400">
             <v-card-title class="text-h6">Available meals</v-card-title>
 
@@ -20,7 +11,7 @@
             </v-card-actions>
           </v-card>
         </v-col>
-        <v-col cols="3">
+        <v-col cols="4">
           <v-card color="#C42D32" dark class="mx-auto" width="400">
             <v-card-title class="text-h6">Today's order</v-card-title>
 
@@ -29,7 +20,7 @@
             </v-card-actions>
           </v-card>
         </v-col>
-        <v-col cols="3">
+        <v-col cols="4">
           <v-card color="#C42D32" dark class="mx-auto" width="400">
             <v-card-title class="text-h6">Pending order</v-card-title>
 
@@ -41,44 +32,38 @@
       </v-row>
 
       <v-row class="mt-6" justify="center">
-          <v-simple-table class="mt-4">
-      <template v-slot:default>
-        <thead>
-          <tr>
-            <th class="text-left">Store Name</th>
-            <th class="text-left">Address</th>
-            <th class="text-left">Phone</th>
-            <th class="text-left">Online Status</th>
-            <th class="text-left">View store</th>
-            <th class="text-left">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="item in tableBody" :key="item.storeId" class="mt-2">
-            <td>{{ item.storeName }}</td>
-            <td>{{ item.locationAddress }}</td>
-            <td>{{item.phoneNumber}} </td>
-            <td>online</td>
-            <td>
-              <nuxt-link :to="'/vendor/dashboard/store/' + item.storeId">
-                view store
-              </nuxt-link>
-            </td>
-            <td>
-              <v-btn
-                text
-                class="text-capitalize"
-                x-small
-              
-                 color="red"
-              >
-                deactivate store
-              </v-btn>
-            </td>
-          </tr>
-        </tbody>
-      </template>
-    </v-simple-table>
+        <v-simple-table class="mt-4">
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th class="text-left">Store Name</th>
+                <th class="text-left">Address</th>
+                <th class="text-left">Phone</th>
+                <th class="text-left">Online Status</th>
+                <th class="text-left">View store</th>
+                <th class="text-left">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in tableBody" :key="item.storeId" class="mt-2">
+                <td>{{ item.storeName }}</td>
+                <td>{{ item.locationAddress }}</td>
+                <td>{{ item.phoneNumber }}</td>
+                <td>online</td>
+                <td>
+                  <nuxt-link :to="'/vendor/dashboard/store/' + item.storeId">
+                    view store
+                  </nuxt-link>
+                </td>
+                <td>
+                  <v-btn text class="text-capitalize" x-small color="red">
+                    deactivate store
+                  </v-btn>
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
       </v-row>
     </div>
 
@@ -100,12 +85,10 @@ export default {
         },
         { text: 'Address', value: 'calories' },
         { text: 'Phone number', value: 'fat' },
-         { text: 'Online Status', value: 'fat' },
+        { text: 'Online Status', value: 'fat' },
         { text: 'Action', value: 'carbs' },
       ],
-      tableBody: [
-      
-      ],
+      tableBody: [],
     }
   },
   methods: {

@@ -2,16 +2,7 @@
   <div id="bg">
     <div>
       <v-row>
-        <v-col cols="3">
-          <v-card color="#C42D32" dark class="mx-auto" max-width="344">
-            <v-card-title class="text-h6"> Current Users</v-card-title>
-
-            <v-card-actions>
-              <v-btn text> 10,500</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-        <v-col cols="3">
+        <v-col cols="4">
           <v-card color="#C42D32" dark class="mx-auto" width="400">
             <v-card-title class="text-h6">Available meals</v-card-title>
 
@@ -20,7 +11,7 @@
             </v-card-actions>
           </v-card>
         </v-col>
-        <v-col cols="3">
+        <v-col cols="4">
           <v-card color="#C42D32" dark class="mx-auto" width="400">
             <v-card-title class="text-h6">Today"s order</v-card-title>
 
@@ -29,7 +20,7 @@
             </v-card-actions>
           </v-card>
         </v-col>
-        <v-col cols="3">
+        <v-col cols="4">
           <v-card color="#C42D32" dark class="mx-auto" width="400">
             <v-card-title class="text-h6">Pending order</v-card-title>
 
@@ -39,8 +30,6 @@
           </v-card>
         </v-col>
       </v-row>
-
-      
     </div>
 
     <v-row class="mt-4">

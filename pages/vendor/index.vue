@@ -61,7 +61,12 @@
       </v-col>
       <v-col cols="6">
         <v-row class="">
-          <v-img src="https://firebasestorage.googleapis.com/v0/b/htmlfoods-63ed2.appspot.com/o/socials%2Fm.png?alt=media&token=d81ff984-19a4-40b0-a2ef-8b568eba735e" height="400" width="560" />
+          <v-img
+            src="https://firebasestorage.googleapis.com/v0/b/htmlfoods-63ed2.appspot.com/o/vendors%2Fchickenrep%2FChickenRepublic_Logo.svg?alt=media&token=59aea29c-5eb2-4083-bc7e-255df56fe408"
+            height="400"
+            width="560"
+            contain
+          />
         </v-row>
       </v-col>
     </v-row>
@@ -73,7 +78,6 @@
     <v-snackbar v-model="snackbarErr" :timeout="timeout" color="error" top>
       {{ msg }}
     </v-snackbar>
-    
   </div>
 </template>
 
@@ -106,7 +110,6 @@ export default {
     }
   },
   methods: {
-  
     async login() {
       this.$v.$touch()
 
@@ -173,6 +176,10 @@ export default {
 
 .rad.v-text-field--outlined >>> fieldset {
   border-color: #5465ff;
+}
+
+.text-c {
+  color: #f8ec14;
 }
 
 .rad.v-btn {

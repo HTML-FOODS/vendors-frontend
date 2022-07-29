@@ -19,6 +19,15 @@
               <v-icon left> mdi-pencil-outline </v-icon>
               Add meal category
             </v-chip>
+            <v-chip
+              class="ma-2"
+              color="#C42D32"
+              outlined
+              @click="makeAmealmenu"
+            >
+              <v-icon left> mdi-food </v-icon>
+              make a meal
+            </v-chip>
             <v-chip class="ma-2" color="#C42D32" outlined @click="makeCombof">
               <v-icon left> mdi-food </v-icon>
               make a combo
@@ -200,6 +209,7 @@
         </v-col>
       </v-row>
       <v-row v-if="addMealcategory"> add meal category </v-row>
+      <v-row v-if="makeAmeal"> make a meal</v-row>
     </v-row>
 
     <v-snackbar v-model="snackbar" :timeout="timeout" color="success" top>
@@ -276,6 +286,87 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+    <v-dialog
+      transition="dialog-bottom-transition"
+      max-width="600"
+      v-model="dialog2"
+    >
+      <v-card>
+        <v-toolbar color="#C42D32" dark>Preview meal</v-toolbar>
+        <v-row justify="center" class="mt-6">
+          <div class="text-capitalize text-h6 text-bold">{{ combo }}</div>
+        </v-row>
+        <v-row justify="center" class="mx-8">
+          <v-col>
+            <v-text-field
+              outlined
+              label="Meal name"
+              v-model="combo"
+            ></v-text-field>
+            <v-text-field
+              outlined
+              label="Amount"
+              prepend-inner-icon="mdi-currency-ngn"
+              v-model="amount"
+            ></v-text-field>
+            <v-text-field
+              outlined
+              label="Discount amount"
+              prepend-inner-icon="mdi-currency-ngn"
+              v-model="discount"
+            ></v-text-field>
+            <v-select
+              label="Select meal category"
+              outlined
+              class="text-capitalize"
+              color="#13274a"
+              v-model="getMealCategory"
+              :items="mealC"
+            ></v-select>
+            <v-combobox
+              v-model="select"
+              :items="items"
+              label="Available Days"
+              multiple
+              outlined
+            ></v-combobox>
+            <v-select
+              label="Select stores"
+              outlined
+              class="text-capitalize"
+              color="#13274a"
+              v-model="getSelectedStores"
+              item-text="storeName"
+              item-value="storeId"
+              :items="storeList"
+              :return-object="true"
+              multiple
+            ></v-select>
+            <v-file-input
+              v-model="mealImage"
+              accept="image/png, image/jpeg, image/bmp"
+              placeholder="Meal Image"
+              prepend-icon="mdi-camera"
+              label="Meal image"
+            ></v-file-input>
+          </v-col>
+        </v-row>
+        <v-card-actions class="justify-end">
+          <v-btn class="text-capitalize" text @click="dialog2 = false"
+            >Back</v-btn
+          >
+          <v-btn
+            :loading="loading"
+            color="green darken-1"
+            text
+            @click="getLink"
+            class="text-capitalize"
+            >Create meal</v-btn
+          >
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -285,6 +376,9 @@ export default {
 
   data() {
     return {
+      getMealCategory: '',
+      dialog2: false,
+      makeAmeal: false,
       makeCombo: false,
       mealsMenu: true,
       addMealitem: false,
@@ -325,6 +419,15 @@ export default {
       storeList: [],
       test: '',
       getSelectedStores: [],
+      mealC: [
+        'EVERY DAY AFFORDABLE VALUE MEALS',
+        'SOULFULLY SPICED FRIED CHICKEN',
+        'FLAME GRILLED CHICKEN',
+        'DELICIOUS ROTISSERIE CHICKEN',
+        'BURGERS, WRAPS & CHICKWHIZZ',
+        'TASTY SIDES',
+        'SWEET TREATS & BEVERAGES',
+      ],
     }
   },
   computed: {},
@@ -386,7 +489,7 @@ export default {
             mealCost: this.amount,
             discountCost: this.discount,
             mealImage: this.getImageLink,
-            mealCategory: 'majors',
+            mealCategory: this.getMealCategory,
             isMealByVendor: true,
             stores: this.getSelectedStores,
           }
@@ -419,18 +522,29 @@ export default {
       this.mealsMenu = false
       this.addMealitem = false
       this.addMealcategory = false
+      this.makeAmeal = false
     },
     mealsCategory() {
       this.makeCombo = false
       this.mealsMenu = false
       this.addMealitem = false
       this.addMealcategory = true
+      this.makeAmeal = false
     },
     addMealitemf() {
       this.makeCombo = false
       this.mealsMenu = false
       this.addMealitem = true
       this.addMealcategory = false
+      this.makeAmeal = false
+    },
+    makeAmealmenu() {
+      this.makeCombo = false
+      this.mealsMenu = false
+      this.addMealitem = false
+      this.addMealcategory = false
+      this.makeAmeal = true
+      this.dialog2 = true
     },
 
     async getStores() {

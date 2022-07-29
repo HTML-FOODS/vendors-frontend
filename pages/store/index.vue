@@ -61,7 +61,12 @@
       </v-col>
       <v-col cols="6">
         <v-row class="">
-          <v-img src="https://firebasestorage.googleapis.com/v0/b/htmlfoods-63ed2.appspot.com/o/socials%2Fm.png?alt=media&token=d81ff984-19a4-40b0-a2ef-8b568eba735e" height="400" width="560" />
+          <v-img
+            src="https://firebasestorage.googleapis.com/v0/b/htmlfoods-63ed2.appspot.com/o/vendors%2Fchickenrep%2FChickenRepublic_Logo.svg?alt=media&token=59aea29c-5eb2-4083-bc7e-255df56fe408"
+            height="400"
+            width="560"
+            contain
+          />
         </v-row>
       </v-col>
     </v-row>
@@ -102,7 +107,7 @@ export default {
       snackbarErr: false,
       snackbar: false,
       loading: false,
-      storeUsername:''
+      storeUsername: '',
     }
   },
   methods: {
@@ -112,10 +117,13 @@ export default {
       if (!this.$v.$invalid) {
         this.loading = true
         try {
-          const res = await axios.post(`${this.$config.baseUrl}vendor/store/login`, {
-            storeUsername: this.storeUsername,
-            password: this.password,
-          })
+          const res = await axios.post(
+            `${this.$config.baseUrl}vendor/store/login`,
+            {
+              storeUsername: this.storeUsername,
+              password: this.password,
+            }
+          )
           console.log(res)
           this.loading = false
           this.msg = res.data.msg
@@ -145,7 +153,8 @@ export default {
     storeUsernameErrors() {
       const errors = []
       if (!this.$v.storeUsername.$dirty) return errors
-      !this.$v.storeUsername.required && errors.push('Store username is required')
+      !this.$v.storeUsername.required &&
+        errors.push('Store username is required')
       return errors
     },
   },
