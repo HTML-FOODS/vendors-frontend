@@ -371,7 +371,7 @@ export default {
           }
         )
         console.log(res)
-        // location.reload()
+         location.reload()
         //  this.storeList = res
         // this.name = res.data.name
       } catch (error) {
