@@ -145,4 +145,12 @@ export default {
 .txtC {
   color: #c42d32;
 }
+
+
+
+html{
+  font-family: 'Lato', sans-serif;
+}
+
+
 </style>

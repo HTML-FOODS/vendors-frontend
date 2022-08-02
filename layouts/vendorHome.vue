@@ -47,3 +47,10 @@ export default {
   },
 }
 </script>
+
+
+<style>
+html{
+  font-family: 'Lato', sans-serif;
+}
+</style>
