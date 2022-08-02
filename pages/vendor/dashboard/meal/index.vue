@@ -39,7 +39,7 @@
 
     <v-row class="mt-4">
       <v-row v-if="mealsMenu">
-        <v-col class="mt-4 mx-2">
+        <v-col class="mt-4 mx-2 mb-4">
           <v-card
             class="mx-2 mt-4"
             outlined
@@ -60,20 +60,23 @@
                   </v-chip>
                   <v-chip class="ma-2" label small color="#C42D32" outlined>
                     5 reviews
-                  </v-chip></v-list-item-subtitle
-                >
+                  </v-chip>
+                  <v-chip class="ma-2" label small  color="success" outlined>
+                    {{item.availableState || 'null'}}
+                  </v-chip>
+                </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
 
-            <v-card-actions>
+            <v-card-actions class="ml-2">
               <v-btn
                 outlined
-                rounded
-                color="success"
+              :to="'/vendor/dashboard/meal/' + item._id"
+               small
                 class="text-capitalize"
-                x-small
+                
               >
-                Available
+                view meal details
               </v-btn>
             </v-card-actions>
           </v-card>
@@ -492,6 +495,7 @@ export default {
             mealCategory: this.getMealCategory,
             isMealByVendor: true,
             stores: this.getSelectedStores,
+            availableState: 'available'
           }
         )
         console.log(res)
