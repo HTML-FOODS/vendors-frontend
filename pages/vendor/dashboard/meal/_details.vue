@@ -79,7 +79,7 @@
             </v-list-item-title>
             <v-list-item-subtitle>
               <v-chip class="ma-2" label small color="success" outlined>
-                {{isMealavailable || 'null'}}
+                {{ isMealavailable || 'null' }}
               </v-chip></v-list-item-subtitle
             >
           </v-list-item-content>
@@ -293,7 +293,7 @@ export default {
       snackbarErr: false,
       mealMenuTitle: 'Meals',
       combo: '',
-        days:'',
+      days: '',
       selRice: '',
       selSides: '',
       selDrinks: '',
@@ -334,7 +334,7 @@ export default {
       ],
       availabilty: ['available', 'not available'],
       mealAvailability: '',
-      isMealavailable:''
+      isMealavailable: '',
     }
   },
   computed: {},
@@ -355,7 +355,7 @@ export default {
         console.log(res)
         this.msg = 'Meal details updated...'
         this.dialog3 = false
-        //  location.reload()
+        location.reload()
         this.snackbar = true
       } catch (error) {
         console.log(error)
