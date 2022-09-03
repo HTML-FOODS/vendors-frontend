@@ -2,7 +2,7 @@
   <div>
     <v-row justify="center" class="mt-10">
       <v-img
-        src="https://firebasestorage.googleapis.com/v0/b/htmlfoods-63ed2.appspot.com/o/vendors%2Fchickenrep%2FChickenRepublic_Logo.svg?alt=media&token=59aea29c-5eb2-4083-bc7e-255df56fe408"
+        src="https://firebasestorage.googleapis.com/v0/b/htmlfoods-63ed2.appspot.com/o/vendors%2Fchickenrep%2Fphoto_5807575664809851865_x.jpg?alt=media&token=7ffe1043-fae9-4764-8e4a-69758a594b94"
         height="400"
         width="560"
         contain
@@ -15,7 +15,7 @@
       </v-col>
       <v-col cols="6" align="start">
         <div>
-          <v-btn color="#C42D32" large dark @click="login" outlined class="rad" to="/store">
+          <v-btn color="#C42D32" large dark  outlined class="rad" to="/store">
             log in store dashboard
           </v-btn>
         </div>

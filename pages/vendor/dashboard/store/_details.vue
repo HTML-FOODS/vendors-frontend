@@ -88,8 +88,8 @@ export default {
         const res = await axios.get(
           `${this.$config.baseUrl}vendor/getstore/${this.id}`
         )
-        console.log(res.data[0])
-         this.storeName = res.data[0].storeName
+        console.log(res.data.payload[0].data[0])
+         this.storeName = res.data.payload[0].data[0].storeName
       } catch (error) {
         console.log(error.response)
       }

@@ -231,7 +231,7 @@ export default {
         } catch (error) {
           console.log(error.response)
           this.loading = false
-          this.msg = error.response.data.msg
+          this.msg = error.response.data.message
           this.snackbarErr = true
         }
       }

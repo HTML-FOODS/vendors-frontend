@@ -109,7 +109,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="item in tableBody" :key="item.storeId" class="mt-2">
+              <tr v-for="item in vendorDetails" :key="item.storeId" class="mt-2">
                 <td class="text-capitalize">{{ item.storeName }}</td>
 
                 <td>
@@ -335,6 +335,7 @@ export default {
       availabilty: ['available', 'not available'],
       mealAvailability: '',
       isMealavailable: '',
+      vendorDetails:[]
     }
   },
   computed: {},
@@ -383,8 +384,8 @@ export default {
         const res = await this.$axios.$get(
           `${this.$config.baseUrl}vendor/getstores`
         )
-        console.log(res)
-        this.storeList = res
+        console.log(res.payload[0].data)
+        this.storeList = res.payload[0].data
         // this.name = res.data.name
       } catch (error) {
         console.log(error.response)
@@ -422,15 +423,16 @@ export default {
         const res = await this.$axios.get(
           `${this.$config.baseUrl}vendor/meals/getmeal/${this.id}`
         )
-        console.log(res.data)
-        this.mealImage = res.data.mealImage
-        this.combo = res.data.mealName
-        this.amount = res.data.mealCost
-        this.discount = res.data.discountCost
-        this.mealCategory = res.data.mealCategory
-        this.availableDays = res.data.day
-        this.tableBody = res.data.vendorDetails.stores
-        this.isMealavailable = res.data.availableState
+        console.log(res.data.payload[0].data)
+        this.mealImage = res.data.payload[0].data.mealImage
+        this.combo = res.data.payload[0].data.mealName
+        this.amount = res.data.payload[0].data.mealCost
+        this.discount = res.data.payload[0].data.discountCost
+        this.mealCategory = res.data.payload[0].data.mealCategory
+        this.availableDays = res.data.payload[0].data.day
+        this.tableBody = res.data.payload[0].data.stores
+        this.isMealavailable = res.data.payload[0].data.availableState
+        this.vendorDetails = res.data.payload[0].data.vendorDetails.stores
         // this.body = res.data.data
       } catch (error) {
         console.log(error)

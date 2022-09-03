@@ -62,7 +62,7 @@
       <v-col cols="6">
         <v-row class="">
           <v-img
-            src="https://firebasestorage.googleapis.com/v0/b/htmlfoods-63ed2.appspot.com/o/vendors%2Fchickenrep%2FChickenRepublic_Logo.svg?alt=media&token=59aea29c-5eb2-4083-bc7e-255df56fe408"
+            src="https://firebasestorage.googleapis.com/v0/b/htmlfoods-63ed2.appspot.com/o/vendors%2Fchickenrep%2Fphoto_5807575664809851865_x.jpg?alt=media&token=7ffe1043-fae9-4764-8e4a-69758a594b94"
             height="400"
             width="560"
             contain
@@ -120,10 +120,10 @@ export default {
             email: this.email,
             password: this.password,
           })
-          console.log(res)
+          // console.log(res.data.payload[0].data)
           this.loading = false
-          this.msg = res.data.msg
-          this.$cookies.set('token', res.data.data, {
+          this.msg = res.data.message
+          this.$cookies.set('token', res.data.payload[0].data, {
             path: '/',
             maxAge: 60 * 60 * 24 * 7,
           })
@@ -133,7 +133,7 @@ export default {
         } catch (error) {
           console.log(error.response)
           this.loading = false
-          this.msg = error.response.data.msg
+          this.msg = error.response.data.message
           this.snackbarErr = true
         }
       }

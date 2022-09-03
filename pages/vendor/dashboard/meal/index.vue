@@ -474,8 +474,8 @@ export default {
         const res = await this.$axios.$get(
           `${this.$config.baseUrl}vendor/meals/getmeals`
         )
-        console.log(res)
-        this.getVendormeals = res
+        console.log(res.payload[0].data)
+        this.getVendormeals = res.payload[0].data
         // this.name = res.data.name
       } catch (error) {
         console.log(error.response)
@@ -506,7 +506,7 @@ export default {
       } catch (error) {
         console.log(error.response)
         this.loading = false
-        this.msg = error.response.data.msg
+        this.msg = error.response.data.message
         this.snackbarErr = true
       }
     },
@@ -556,8 +556,8 @@ export default {
         const res = await this.$axios.$get(
           `${this.$config.baseUrl}vendor/getstores`
         )
-        console.log(res)
-        this.storeList = res
+        console.log(res.payload[0].data)
+        this.storeList = res.payload[0].data
         // this.name = res.data.name
       } catch (error) {
         console.log(error.response)
