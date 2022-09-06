@@ -54,7 +54,7 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title
         ><span class="txtC font-weight-bold titl-fnt-mb"
-          >chicken rep</span
+          >MacMakin (chicken rep)</span
         ></v-toolbar-title
       >
 

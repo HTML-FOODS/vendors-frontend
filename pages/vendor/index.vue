@@ -5,7 +5,7 @@
         <v-row justify="center" align="center" class="">
           <v-col cols="12" sm="8" md="6">
             <p class="text-h5 text-capitalize text-center font-weight-bold">
-              Log into vendor Dashboard
+              Log into HQ Dashboard
             </p>
           </v-col>
         </v-row>

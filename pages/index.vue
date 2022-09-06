@@ -11,7 +11,7 @@
 
     <v-row justify="center" class="mt-0">
       <v-col cols="6" align="end">
-        <v-btn color="#C42D32" large dark outlined class="rad" to="/vendor"> login to vendor dashboard </v-btn>
+        <v-btn color="#C42D32" large dark outlined class="rad" to="/vendor"> login to HQ dashboard </v-btn>
       </v-col>
       <v-col cols="6" align="start">
         <div>
