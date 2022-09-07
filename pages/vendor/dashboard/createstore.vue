@@ -63,7 +63,7 @@
       </v-row>
       <v-row class="mt-4 mb-4" justify="center">
         <v-btn
-          color="#C42D32"
+          color="#F4740E"
           large
           :loading="loading"
           dark

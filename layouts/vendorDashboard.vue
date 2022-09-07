@@ -143,7 +143,7 @@ export default {
   background: #e5e5e5;
 }
 .txtC {
-  color: #c42d32;
+  color: #F4740E;
 }
 
 

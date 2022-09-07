@@ -6,13 +6,13 @@
       <v-col cols="8">
         <v-row justify="end">
           <div>
-            <v-chip class="ma-2" color="#C42D32" outlined @click="addMealitemf">
+            <v-chip class="ma-2" color="#F4740E" outlined @click="addMealitemf">
               <v-icon left> mdi-pencil-outline </v-icon>
               Add meal item
             </v-chip>
             <v-chip
               class="ma-2"
-              color="#C42D32"
+              color="#F4740E"
               outlined
               @click="mealsCategory"
             >
@@ -21,14 +21,14 @@
             </v-chip>
             <v-chip
               class="ma-2"
-              color="#C42D32"
+              color="#F4740E"
               outlined
               @click="makeAmealmenu"
             >
               <v-icon left> mdi-food </v-icon>
               make a meal
             </v-chip>
-            <v-chip class="ma-2" color="#C42D32" outlined @click="makeCombof">
+            <v-chip class="ma-2" color="#F4740E" outlined @click="makeCombof">
               <v-icon left> mdi-food </v-icon>
               make a combo
             </v-chip>
@@ -146,7 +146,7 @@
           <v-row justify="end">
             <v-col cols="12" sm="7" md="6" lg="5">
               <v-sheet elevation="10" rounded="xl">
-                <v-sheet class="pa-2" color="#C42D32" dark rounded="t-xl">
+                <v-sheet class="pa-2" color="#F4740E" dark rounded="t-xl">
                   <v-btn
                     dark
                     text

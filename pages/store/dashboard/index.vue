@@ -59,29 +59,67 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-card-actions
-            v-for="(items, index) in item.vendorDetails.stores"
-            :key="index"
-          >
-            <v-btn
-              outlined
-              rounded
-              color="success"
-              class="text-capitalize"
-              small
-              v-if="items.storeId == storeId"
+          <v-card-actions>
+            <div
+              v-for="(items, index) in item.vendorDetails.stores"
+              :key="index"
             >
-              {{ items.mealAvailable }}
-            </v-btn>
+              <v-btn
+                text
+                rounded
+                color=""
+                class="text-capitalize"
+                x-small
+                v-if="items.storeId == storeId"
+              >
+                {{ items.mealAvailable }}
+              </v-btn>
+            </div>
 
-            <v-spacer />
-            <v-switch
-              flat
-              v-model="switch1"
-              inset
-              @change="changeAvailable(item._id)"
-              v-if="items.storeId == storeId"
-            ></v-switch>
+            <div
+              v-for="(items, index) in item.vendorDetails.stores"
+              :key="index"
+              class="ml-2"
+            >
+              <v-btn
+                outlined
+                rounded
+                color="success"
+                class="text-capitalize"
+                small
+                @click="Available(item._id)"
+                v-if="
+                  items.storeId == storeId &&
+                  items.mealAvailable == 'not available'
+                "
+              >
+                turn on availability
+              </v-btn>
+
+              <v-btn
+                outlined
+                rounded
+                color="#C42D32"
+                class="text-capitalize"
+                small
+                @click="notAvailable(item._id)"
+                v-if="
+                  items.storeId == storeId && items.mealAvailable == 'available'
+                "
+              >
+                turn off availablity
+              </v-btn>
+
+              <!--   <v-switch
+                flat
+                :v-model="items.storeId"
+                inset
+                false-value="NO"
+                true-value="YES"
+                @change="changeAvailable(item._id)"
+                v-if="items.storeId == storeId"
+              ></v-switch>  -->
+            </div>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -114,36 +152,34 @@ export default {
         console.log(error.response)
       }
     },
-    async changeAvailable(mealId) {
-      console.log(this.switch1, mealId)
-      if (this.switch1 == false) {
-        console.log('not available', mealId)
-        try {
-          const res = await this.$axios.$post(
-            `${this.$config.baseUrl}vendor/store/meal/availability`,
-            {
-              _id: mealId,
-              setCondition: 'not available',
-            }
-          )
-          console.log(res)
-        } catch (error) {
-          console.log(error.response)
-        }
-      } else if (this.switch1 == true) {
-        console.log('available', mealId)
-        try {
-          const res = await this.$axios.$post(
-            `${this.$config.baseUrl}vendor/store/meal/availability`,
-            {
-              _id: mealId,
-              setCondition: 'available',
-            }
-          )
-          console.log(res)
-        } catch (error) {
-          console.log(error.response)
-        }
+    async notAvailable(mealId) {
+      try {
+        const res = await this.$axios.$post(
+          `${this.$config.baseUrl}vendor/store/meal/availability`,
+          {
+            _id: mealId,
+            setCondition: 'not available',
+          }
+        )
+        console.log(res)
+        location.reload()
+      } catch (error) {
+        console.log(error.response)
+      }
+    },
+    async Available(mealId) {
+      try {
+        const res = await this.$axios.$post(
+          `${this.$config.baseUrl}vendor/store/meal/availability`,
+          {
+            _id: mealId,
+            setCondition: 'available',
+          }
+        )
+        console.log(res)
+        location.reload()
+      } catch (error) {
+        console.log(error.response)
       }
     },
     async getMeals() {

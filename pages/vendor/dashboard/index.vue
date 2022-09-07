@@ -3,7 +3,7 @@
     <div>
       <v-row>
         <v-col cols="4">
-          <v-card color="#C42D32" dark class="mx-auto" width="400">
+          <v-card color="#F4740E" dark class="mx-auto" width="400">
             <v-card-title class="text-h6">Available meals</v-card-title>
 
             <v-card-actions>
@@ -12,7 +12,7 @@
           </v-card>
         </v-col>
         <v-col cols="4">
-          <v-card color="#C42D32" dark class="mx-auto" width="400">
+          <v-card color="#F4740E" dark class="mx-auto" width="400">
             <v-card-title class="text-h6">Today's order</v-card-title>
 
             <v-card-actions>
@@ -21,7 +21,7 @@
           </v-card>
         </v-col>
         <v-col cols="4">
-          <v-card color="#C42D32" dark class="mx-auto" width="400">
+          <v-card color="#F4740E" dark class="mx-auto" width="400">
             <v-card-title class="text-h6">Pending order</v-card-title>
 
             <v-card-actions>

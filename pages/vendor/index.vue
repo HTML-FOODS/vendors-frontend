@@ -16,7 +16,7 @@
                 label="Enter your Email"
                 style="corner"
                 outlined
-                color="#C42D32"
+                color="#F4740E"
                 class="{width:40px}"
                 v-model="email"
                 :error-messages="emailErrors"
@@ -33,7 +33,7 @@
               label="Enter your Password"
               type="password"
               outlined
-              color="#C42D32"
+              color="#F4740E"
               v-model="password"
               :error-messages="passwordErros"
               @input="$v.password.$touch()"
@@ -46,7 +46,7 @@
           <v-col>
             <div>
               <v-btn
-                color="#C42D32"
+                color="#F4740E"
                 x-large
                 :loading="loading"
                 dark
