@@ -61,8 +61,8 @@
                   <v-chip class="ma-2" label small color="#C42D32" outlined>
                     5 reviews
                   </v-chip>
-                  <v-chip class="ma-2" label small  color="success" outlined>
-                    {{item.availableState || 'null'}}
+                  <v-chip class="ma-2" label small color="success" outlined>
+                    {{ item.availableState || 'null' }}
                   </v-chip>
                 </v-list-item-subtitle>
               </v-list-item-content>
@@ -71,10 +71,9 @@
             <v-card-actions class="ml-2">
               <v-btn
                 outlined
-              :to="'/vendor/dashboard/meal/' + item._id"
-               small
+                :to="'/vendor/dashboard/meal/' + item._id"
+                small
                 class="text-capitalize"
-                
               >
                 view meal details
               </v-btn>
@@ -211,7 +210,29 @@
           </v-row>
         </v-col>
       </v-row>
-      <v-row v-if="addMealcategory"> add meal category </v-row>
+      <v-row v-if="addMealcategory">
+        <v-row justify="center" class="mt-6 mx-auto">
+          <v-col cols="6">
+            <v-text-field
+              outlined
+              label="Meal Category"
+              v-model="mealCat"
+            ></v-text-field>
+            <v-row class="mt-4 mb-4" justify="center">
+              <v-btn
+                color="#F4740E"
+                large
+                :loading="loading"
+                dark
+                @click="createMealCat"
+                class="titl-fnt-mb-b2 text-capitalize"
+              >
+                create meal category
+              </v-btn>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-row>
       <v-row v-if="makeAmeal"> make a meal</v-row>
     </v-row>
 
@@ -379,6 +400,7 @@ export default {
 
   data() {
     return {
+      mealCat: '',
       getMealCategory: '',
       dialog2: false,
       makeAmeal: false,
@@ -495,7 +517,7 @@ export default {
             mealCategory: this.getMealCategory,
             isMealByVendor: true,
             stores: this.getSelectedStores,
-            availableState: 'available'
+            availableState: 'available',
           }
         )
         console.log(res)
@@ -561,6 +583,22 @@ export default {
         // this.name = res.data.name
       } catch (error) {
         console.log(error.response)
+      }
+    },
+    async createMealCat() {
+      try {
+        const res = await this.$axios.$post(
+          `${this.$config.baseUrl}vendor/meals/createmealcategory`,
+          {
+            mealCategory: [this.mealCat],
+          }
+        )
+        console.log(res)
+        this.loading = false
+      } catch (error) {
+        console.log(error.response)
+        this.loading = false
+        this.msg = error.response.data.message
       }
     },
   },
