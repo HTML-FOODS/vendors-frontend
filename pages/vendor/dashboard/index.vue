@@ -7,7 +7,7 @@
             <v-card-title class="text-h6">Available meals</v-card-title>
 
             <v-card-actions>
-              <v-btn text> 500</v-btn>
+              <v-btn text> {{totalAvailableMeal}}</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -89,6 +89,7 @@ export default {
         { text: 'Action', value: 'carbs' },
       ],
       tableBody: [],
+      totalAvailableMeal:''
     }
   },
   methods: {
@@ -97,8 +98,21 @@ export default {
         const res = await this.$axios.$get(
           `${this.$config.baseUrl}vendor/getstores`
         )
-       // console.log(res.payload[0].data)
+        // console.log(res.payload[0].data)
         this.tableBody = res.payload[0].data
+        // this.name = res.data.name
+      } catch (error) {
+        console.log(error.response)
+      }
+    },
+    async getStoreProfile() {
+      try {
+        const res = await this.$axios.$get(
+          `${this.$config.baseUrl}vendor/getProfile`
+        )
+        console.log(res.payload[0].totalAvailableMeal)
+        this.totalAvailableMeal = res.payload[0].totalAvailableMeal
+        // this.tableBody = res.payload[0].data
         // this.name = res.data.name
       } catch (error) {
         console.log(error.response)
@@ -107,6 +121,7 @@ export default {
   },
   created() {
     this.getStores()
+    this.getStoreProfile()
   },
 }
 </script>
