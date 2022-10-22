@@ -98,8 +98,8 @@ export default {
         const res = await this.$axios.$get(
           `${this.$config.baseUrl}vendor/getstores`
         )
-        // console.log(res.payload[0].data)
-        this.tableBody = res.payload[0].data
+        console.log(res.payload)
+        this.tableBody = res.payload
         // this.name = res.data.name
       } catch (error) {
         console.log(error.response)

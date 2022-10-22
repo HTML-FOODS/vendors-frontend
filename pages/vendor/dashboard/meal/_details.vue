@@ -384,8 +384,8 @@ export default {
         const res = await this.$axios.$get(
           `${this.$config.baseUrl}vendor/getstores`
         )
-        console.log(res.payload[0].data)
-        this.storeList = res.payload[0].data
+        console.log(res.payload)
+        this.storeList = res.payload
         // this.name = res.data.name
       } catch (error) {
         console.log(error.response)
@@ -423,16 +423,16 @@ export default {
         const res = await this.$axios.get(
           `${this.$config.baseUrl}vendor/meals/getmeal/${this.id}`
         )
-        console.log(res.data.payload[0].data)
-        this.mealImage = res.data.payload[0].data.mealImage
-        this.combo = res.data.payload[0].data.mealName
-        this.amount = res.data.payload[0].data.mealCost
-        this.discount = res.data.payload[0].data.discountCost
-        this.mealCategory = res.data.payload[0].data.mealCategory
-        this.availableDays = res.data.payload[0].data.day
-        this.tableBody = res.data.payload[0].data.stores
-        this.isMealavailable = res.data.payload[0].data.availableState
-        this.vendorDetails = res.data.payload[0].data.vendorDetails.stores
+        console.log(res.data.payload)
+        this.mealImage = res.data.payload.mealImage
+        this.combo = res.data.payload.mealName
+        this.amount = res.data.payload.mealCost
+        this.discount = res.data.payload.discountCost
+        this.mealCategory = res.data.payload.mealCategory
+        this.availableDays = res.data.payload.day
+        this.tableBody = res.data.payload.stores
+        this.isMealavailable = res.data.payload.availableState
+        this.vendorDetails = res.data.payload.vendorDetails.stores
         // this.body = res.data.data
       } catch (error) {
         console.log(error)

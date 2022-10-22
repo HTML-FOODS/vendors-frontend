@@ -135,7 +135,7 @@ export default {
   data() {
     return {
       switch1: false,
-      getVendormeals: '',
+      getVendormeals: [],
       currentState: true,
       storeId: '',
     }
@@ -146,10 +146,10 @@ export default {
         const res = await this.$axios.$get(
           `${this.$config.baseUrl}vendor/store/profile`
         )
-        // console.log(res.payload[0].data[0].storeId)
-        this.storeId = res.payload[0].data[0].storeId
+        console.log(res)
+        this.storeId = res.payload[0].storeId
       } catch (error) {
-        console.log(error.response)
+        console.log(error)
       }
     },
     async notAvailable(mealId) {
@@ -187,11 +187,11 @@ export default {
         const res = await this.$axios.$get(
           `${this.$config.baseUrl}vendor/meals/getmeals/store`
         )
-        console.log(res.payload[0].data)
+        console.log(res)
         this.getVendormeals = res.payload[0].data
         // this.name = res.data.name
       } catch (error) {
-        console.log(error.response)
+        console.log(error)
       }
     },
   },

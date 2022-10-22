@@ -496,7 +496,7 @@ export default {
         const res = await this.$axios.$get(
           `${this.$config.baseUrl}vendor/meals/getmeals`
         )
-        console.log(res.payload[0].data)
+        console.log(res)
         this.getVendormeals = res.payload[0].data
         // this.name = res.data.name
       } catch (error) {
@@ -578,8 +578,8 @@ export default {
         const res = await this.$axios.$get(
           `${this.$config.baseUrl}vendor/getstores`
         )
-        console.log(res.payload[0].data)
-        this.storeList = res.payload[0].data
+        console.log(res.payload)
+        this.storeList = res.payload
         // this.name = res.data.name
       } catch (error) {
         console.log(error.response)

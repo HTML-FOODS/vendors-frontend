@@ -100,7 +100,8 @@ export default {
         {
           text: 'Settings',
           icon: 'mdi-wrench-cog-outline',
-          to: '/partners/dashboard/monthly',
+          to: '/',
+          
         },
       ],
       miniVariant: false,
@@ -114,7 +115,7 @@ export default {
   methods: {
     logout() {
       this.$cookies.removeAll()
-      this.$router.push({ name: 'partners' })
+      this.$router.push({ name: 'vendor' })
     },
   },
   filters: {

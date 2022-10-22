@@ -12,7 +12,12 @@
           <v-list-item-avatar>
             <v-toolbar-title>
               <nuxt-link to="/">
-                <v-img class="ml-2" src="https://firebasestorage.googleapis.com/v0/b/htmlfoods-63ed2.appspot.com/o/vendors%2Fchickenrep%2Fphoto_5807575664809851865_x.jpg?alt=media&token=7ffe1043-fae9-4764-8e4a-69758a594b94" contain width="90"></v-img>
+                <v-img
+                  class="ml-2"
+                  src="https://firebasestorage.googleapis.com/v0/b/htmlfoods-63ed2.appspot.com/o/vendors%2Fchickenrep%2Fphoto_5807575664809851865_x.jpg?alt=media&token=7ffe1043-fae9-4764-8e4a-69758a594b94"
+                  contain
+                  width="90"
+                ></v-img>
               </nuxt-link>
             </v-toolbar-title>
           </v-list-item-avatar>
@@ -82,19 +87,19 @@ export default {
         {
           text: 'Dashboard',
           icon: 'mdi-view-dashboard-outline',
-          to: '/partners/dashboard/',
+          to: '/store/dashboard',
         },
         //  { text: 'Profile', icon: 'mdi-account-group', to: '/partners/dashboard/profile'  },
 
         {
           text: 'Meals',
           icon: 'mdi-food',
-          to: '/partners/dashboard/weekly',
+          to: '/store/',
         },
         {
           text: 'Settings',
           icon: 'mdi-wrench-cog-outline',
-          to: '/partners/dashboard/monthly',
+          to: '/store/',
         },
       ],
       miniVariant: false,
