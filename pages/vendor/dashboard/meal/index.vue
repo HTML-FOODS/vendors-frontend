@@ -536,11 +536,11 @@ export default {
       this.dialog = true
       this.combo =
         this.rice[this.selRice] +
-        '+' +
+        ' & ' +
         this.protein[this.selProtein] +
-        '+' +
+        ' & ' +
         this.drinks[this.selDrinks] +
-        '+' +
+        ' & ' +
         this.sides[this.selSides]
     },
     makeCombof() {
