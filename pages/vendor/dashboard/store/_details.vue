@@ -7,25 +7,17 @@
             </div>
         </v-row>
       <v-row>
-        <v-col cols="3">
-          <v-card color="#C42D32" dark class="mx-auto" max-width="344">
-            <v-card-title class="text-h6"> Current Users</v-card-title>
-
-            <v-card-actions>
-              <v-btn text> 10,500</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-        <v-col cols="3">
+        
+        <v-col cols="4">
           <v-card color="#C42D32" dark class="mx-auto" width="400">
-            <v-card-title class="text-h6">Available meals</v-card-title>
+            <v-card-title class="text-h6">Total meals</v-card-title>
 
             <v-card-actions>
-              <v-btn text> 500</v-btn>
+            <v-btn text> {{totalMeals}}</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
-        <v-col cols="3">
+        <v-col cols="4">
           <v-card color="#C42D32" dark class="mx-auto" width="400">
             <v-card-title class="text-h6">Today's order</v-card-title>
 
@@ -34,7 +26,7 @@
             </v-card-actions>
           </v-card>
         </v-col>
-        <v-col cols="3">
+        <v-col cols="4">
           <v-card color="#C42D32" dark class="mx-auto" width="400">
             <v-card-title class="text-h6">Pending order</v-card-title>
 
@@ -79,6 +71,7 @@ export default {
       msg: '',
       storeName:"",
       id: this.$route.params.details,
+      totalMeals:""
     }
   },
   computed: {},
@@ -88,10 +81,11 @@ export default {
         const res = await axios.get(
           `${this.$config.baseUrl}vendor/getstore/${this.id}`
         )
-        console.log(res.data.payload[0].data[0])
-         this.storeName = res.data.payload[0].data[0].storeName
+        console.log(res.data.payload)
+         this.storeName = res.data.payload.storeName
+         this.totalMeals = res.data.payload.totalMeals
       } catch (error) {
-        console.log(error.response)
+        console.log(error)
       }
     },
   },
