@@ -9,6 +9,16 @@
             <v-icon left> mdi-pencil-outline </v-icon>
             Edit meal
           </v-chip>
+
+          <v-chip
+            class="ma-2"
+            color="#C42D32"
+            outlined
+            @click="deleteMealDialog = true"
+          >
+            <v-icon left> mdi-delete-outline </v-icon>
+            Delete meal
+          </v-chip>
         </v-row>
       </v-col>
     </v-row>
@@ -109,7 +119,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="item in vendorDetails" :key="item.storeId" class="mt-2">
+              <tr
+                v-for="item in vendorDetails"
+                :key="item.storeId"
+                class="mt-2"
+              >
                 <td class="text-capitalize">{{ item.storeName }}</td>
 
                 <td>
@@ -150,6 +164,22 @@
           <v-btn color="green darken-1" text @click="removeStore()">
             Agree
           </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+    <v-dialog v-model="deleteMealDialog" persistent width="400">
+      <v-card>
+        <v-card-title class="text-h6 text-capitalize pt-4">
+          Are you sure you want to delete this meal?
+        </v-card-title>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" text @click="deleteMealDialog = false">
+            No
+          </v-btn>
+          <v-btn color="red" text @click="deleteMeal()"> Yes </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -270,6 +300,7 @@ export default {
 
   data() {
     return {
+      deleteMealDialog: false,
       dialog3: false,
       dialog2: false,
       msg: '',
@@ -335,11 +366,26 @@ export default {
       availabilty: ['available', 'not available'],
       mealAvailability: '',
       isMealavailable: '',
-      vendorDetails:[]
+      vendorDetails: [],
     }
   },
   computed: {},
   methods: {
+    async deleteMeal() {
+      try {
+        const res = await this.$axios.delete(
+          `${this.$config.baseUrl}vendor/meals/deletemeal/${this.id}`
+        )
+        console.log(res)
+        this.msg = 'Meal details updated...'
+        this.deleteMealDialog = false
+        this.$router.push({ name: 'vendor-dashboard' })
+        this.snackbar = true
+      } catch (error) {
+        console.log(error)
+        this.deleteMealDialog = false
+      }
+    },
     async editMealdetails() {
       try {
         const res = await this.$axios.post(
@@ -372,7 +418,7 @@ export default {
           }
         )
         console.log(res)
-         location.reload()
+        location.reload()
         //  this.storeList = res
         // this.name = res.data.name
       } catch (error) {

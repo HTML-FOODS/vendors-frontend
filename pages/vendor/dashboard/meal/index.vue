@@ -452,6 +452,8 @@ export default {
         'BURGERS, WRAPS & CHICKWHIZZ',
         'TASTY SIDES',
         'SWEET TREATS & BEVERAGES',
+        'OYATO LOAF',
+        'OYATO CAKES'
       ],
     }
   },
