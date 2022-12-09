@@ -7,7 +7,7 @@
             <v-card-title class="text-h6">Available meals</v-card-title>
 
             <v-card-actions>
-              <v-btn text> {{totalAvailableMeal}}</v-btn>
+              <v-btn text> {{ totalAvailableMeal }}</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -41,7 +41,6 @@
                 <th class="text-left">Phone</th>
                 <th class="text-left">Online Status</th>
                 <th class="text-left">View store</th>
-                <th class="text-left">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -54,11 +53,6 @@
                   <nuxt-link :to="'/vendor/dashboard/store/' + item.storeId">
                     view store
                   </nuxt-link>
-                </td>
-                <td>
-                  <v-btn text class="text-capitalize" x-small color="red">
-                    deactivate store
-                  </v-btn>
                 </td>
               </tr>
             </tbody>
@@ -89,7 +83,7 @@ export default {
         { text: 'Action', value: 'carbs' },
       ],
       tableBody: [],
-      totalAvailableMeal:''
+      totalAvailableMeal: '',
     }
   },
   methods: {

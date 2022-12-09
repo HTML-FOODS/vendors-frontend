@@ -100,7 +100,7 @@ export default {
         {
           text: 'Settings',
           icon: 'mdi-wrench-cog-outline',
-          to: '/',
+          to: '/vendor/dashboard/settings',
           
         },
       ],
