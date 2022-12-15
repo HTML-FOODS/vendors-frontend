@@ -148,6 +148,10 @@ export default {
         )
         console.log(res)
         this.storeId = res.payload[0].storeId
+        this.$cookies.set('storeId', res.payload[0].storeId, {
+          path: '/',
+          maxAge: 60 * 60 * 24 * 7,
+        })
       } catch (error) {
         console.log(error)
       }

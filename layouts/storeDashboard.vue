@@ -92,15 +92,11 @@ export default {
         //  { text: 'Profile', icon: 'mdi-account-group', to: '/partners/dashboard/profile'  },
 
         {
-          text: 'Meals',
+          text: 'Ordered Meals',
           icon: 'mdi-food',
-          to: '/store/',
+          to: '/store/dashboard/ordered',
         },
-        {
-          text: 'Settings',
-          icon: 'mdi-wrench-cog-outline',
-          to: '/store/',
-        },
+      
       ],
       miniVariant: false,
       right: true,

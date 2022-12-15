@@ -26,7 +26,14 @@ export default function ({ $axios, redirect, $cookies }) {
           redirect('/admin')
         }
       })
-    } */
+    } 
+  if (process.browser) {
+    $axios.onRequest((config) => {
+      const token = $cookies.get('token')
+      config.headers.common['x-store-token'] = token
+      return config
+    }) */
+
   if (process.browser) {
     $axios.onRequest((config) => {
       const token = $cookies.get('token')

@@ -98,8 +98,10 @@ export default {
   build: {},
   publicRuntimeConfig: {
     baseUrl: process.env.BASE_URL,
+    baseUrl2: process.env.BASE_URL2,
   },
   privateRuntimeConfig: {
     myPrivateToken: process.env.BASE_URL,
+    myPrivateToken2: process.env.BASE_URL2,
   },
 }
