@@ -31,13 +31,15 @@
           <v-col>
             <v-text-field
               label="Enter your Password"
-              type="password"
               outlined
               color="#C42D32"
               v-model="password"
               :error-messages="passwordErros"
               @input="$v.password.$touch()"
               @blur="$v.password.$touch()"
+              @click:append="show = !show"
+              :type="show ? 'text' : 'password'"
+              :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -108,6 +110,7 @@ export default {
       snackbar: false,
       loading: false,
       storeUsername: '',
+      show: false,
     }
   },
   methods: {
