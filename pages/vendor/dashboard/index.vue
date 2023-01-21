@@ -4,35 +4,86 @@
       <v-row>
         <v-col cols="4">
           <v-card color="#F4740E" dark class="mx-auto" width="400">
-            <v-card-title class="text-h6">Available meals</v-card-title>
+            <v-card-title class="text-h6 text-capitalize"
+              >Total meals
+              <v-icon class="ml-4" left> mdi-food </v-icon></v-card-title
+            >
 
             <v-card-actions>
-              <v-btn text> {{ totalAvailableMeal }}</v-btn>
+              <v-btn text class="overline"> {{ totalMealsByVendors }}</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
         <v-col cols="4">
           <v-card color="#F4740E" dark class="mx-auto" width="400">
-            <v-card-title class="text-h6">Today's order</v-card-title>
+            <v-card-title class="text-h6 text-capitalize"
+              >Total meal checkout
+              <v-icon class="ml-4" left> mdi-food </v-icon></v-card-title
+            >
 
             <v-card-actions>
-              <v-btn text> 5008</v-btn>
+              <v-btn text class="overline"> {{ totalMealCheckouts }}</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
         <v-col cols="4">
           <v-card color="#F4740E" dark class="mx-auto" width="400">
-            <v-card-title class="text-h6">Pending order</v-card-title>
+            <v-card-title class="text-h6 text-capitalize"
+              >Total checkout payment
+              <v-icon class="ml-4" left>
+                mdi-cash-multiple
+              </v-icon></v-card-title
+            >
 
             <v-card-actions>
-              <v-btn text> 508</v-btn>
+              <v-btn text class="overline"> {{ totalCheckoutPayments }}</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
       </v-row>
 
+      <v-expansion-panels class="mt-1" flat>
+        <v-expansion-panel>
+          <v-expansion-panel-header class="text-capitalize caption"
+            >Click for More analytics
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <v-row>
+              <v-col cols="6">
+                <v-card color="#F4740E" dark class="mx-auto" width="400">
+                  <v-card-title class="text-h6 text-capitalize"
+                    >Total pending checkout
+                    <v-icon class="ml-4" left> mdi-cart </v-icon></v-card-title
+                  >
+
+                  <v-card-actions>
+                    <v-btn text class="overline">
+                      {{ totalPendingCheckouts }}</v-btn
+                    >
+                  </v-card-actions>
+                </v-card>
+              </v-col>
+              <v-col cols="6">
+                <v-card color="#F4740E" dark class="mx-auto" width="400">
+                  <v-card-title class="text-h6 text-capitalize"
+                    >Total received checkout
+                    <v-icon class="ml-4" left> mdi-cart </v-icon></v-card-title
+                  >
+
+                  <v-card-actions>
+                    <v-btn text class="overline">
+                      {{ totalRecievedCheckouts }}</v-btn
+                    >
+                  </v-card-actions>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
+
       <v-row class="mt-6" justify="center">
-        <v-simple-table class="mt-4">
+        <v-simple-table class="mt-4 mb-6">
           <template v-slot:default>
             <thead>
               <tr>
@@ -84,17 +135,44 @@ export default {
       ],
       tableBody: [],
       totalAvailableMeal: '',
+      vendorId: '',
+      totalMealsByVendors: '',
+      totalMealCheckouts: '',
+      totalCheckoutPayments: '',
+      totalPendingCheckouts: '',
+      totalRecievedCheckouts: '',
     }
   },
   methods: {
+    async getAnalytics() {
+      const token = this.$config.analytics_token
+      const config = {
+        headers: {
+          'x-metric-key': token,
+        },
+        params: { vendorId: this.vendorId },
+      }
+      try {
+        const analy = await this.$axios.$get(
+          `${this.$config.baseUrl2}metrics/vendors`,
+          config
+        )
+        this.totalMealsByVendors = analy.payload.totalMealsByVendors
+        this.totalMealCheckouts = analy.payload.totalMealCheckouts
+        this.totalCheckoutPayments = analy.payload.totalCheckoutPayments
+        this.totalPendingCheckouts = analy.payload.totalPendingCheckouts
+        this.totalRecievedCheckouts = analy.payload.totalRecievedCheckouts
+      } catch (error) {
+        console.log(error)
+      }
+    },
     async getStores() {
       try {
         const res = await this.$axios.$get(
           `${this.$config.baseUrl}vendor/getstores`
         )
-        console.log(res.payload)
+
         this.tableBody = res.payload
-        // this.name = res.data.name
       } catch (error) {
         console.log(error.response)
       }
@@ -104,10 +182,8 @@ export default {
         const res = await this.$axios.$get(
           `${this.$config.baseUrl}vendor/getProfile`
         )
-        console.log(res.payload[0].totalAvailableMeal)
         this.totalAvailableMeal = res.payload[0].totalAvailableMeal
-        // this.tableBody = res.payload[0].data
-        // this.name = res.data.name
+        this.vendorId = res.payload[0].data.vendorId
       } catch (error) {
         console.log(error.response)
       }
@@ -116,6 +192,9 @@ export default {
   created() {
     this.getStores()
     this.getStoreProfile()
+    setTimeout(() => {
+      this.getAnalytics()
+    }, 1000)
   },
 }
 </script>

@@ -7,9 +7,9 @@
         </nuxt-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn class="text-capitalize mr-4" outlined rounded color="#C42D32">
+     <!-- <v-btn class="text-capitalize mr-4" outlined rounded color="#C42D32">
         register
-      </v-btn>
+      </v-btn> -->
     </v-app-bar>
     <v-main>
       <v-container>

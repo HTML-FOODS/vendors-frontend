@@ -14,12 +14,13 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-    {
-      rel: "stylesheet",
-      href: 'https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap',
-    },],
-    
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap',
+      },
+    ],
   },
   server: {
     port: 8080, // default: 3000
@@ -45,6 +46,7 @@ export default {
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
     '@nuxtjs/dotenv',
+    '@nuxtjs/google-fonts'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -68,7 +70,7 @@ export default {
     },
     services: {
       auth: false, // Just as example. Can be any other service.
-      storage: true
+      storage: true,
     },
   },
 
@@ -99,9 +101,23 @@ export default {
   publicRuntimeConfig: {
     baseUrl: process.env.BASE_URL,
     baseUrl2: process.env.BASE_URL2,
+    analytics_token: process.env.analytics_token,
   },
   privateRuntimeConfig: {
     myPrivateToken: process.env.BASE_URL,
     myPrivateToken2: process.env.BASE_URL2,
+    analytics_token: process.env.analytics_token,
   },
+
+  googleFonts: {
+    families: {
+      Roboto: true,
+      'Josefin+Sans': true,
+      Lato: [100, 300],
+      Raleway: {
+        wght: [100, 400],
+        ital: [100]
+      },
+    }
+  }
 }
